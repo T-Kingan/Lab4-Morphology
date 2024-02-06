@@ -10,7 +10,7 @@ As before, clone this repository to your laptop and keep your experimental logbo
 
 Matlab provides a collection of morphological functions.  Here is a list of them:
 
-<p align="center"> <img src="assets/morphological_operators.jpg" /> </p><BR>
+<p align="center"> <img src="assets/morphological_operators.jpg" /> </p>
 
 ### Dilation Operation
 ```
@@ -43,7 +43,7 @@ For spatial filtering, we used function _fspecial_ to generate our filter kernel
 
 Here is a list of SE that _strel_ can generate:
 
-<p align="center"> <img src="assets/strel.jpg" /> </p><BR>
+<p align="center"> <img src="assets/strel.jpg" /> </p>
 
 For example, to generate a disk with radius r = 4:
 
@@ -77,7 +77,7 @@ Comment on the results.
 ### Opening = Erosion + Dilation
 In this task, you will explore the effect of using Open and Close on a binary noisy fingerprint image.
 
-1. Read the image file 'finger-noisy.tf' into F.
+1. Read the image file 'finger-noisy.tif' into F.
 2. Generate a 3x3 structuring element SE.
 3. Erode F to produce F_e.
 4. Dilate F_e to produce F_ed.
@@ -113,4 +113,13 @@ The Matlab function  _graythresh_ computes a global threshold T from grayscale i
 Now, use the boundary operation to computer the boundaries of the blobs. That is, compute BW - BW eroded with SE, where SE is a 3x3 elements of 1's.  Diplay as montage {I, BW, erosed BW and boundary detected image}.  Comment on the result.
 
 How can you improve on this result?
+
+
+## Task 4 - Function bwmorph - thinning, top-hat?
+
+## Task 5 - Connected Components and labels
+
+## Task 6 - Morphological Reconstruction
+
+## Task 7 - Morphological Operations on Grayscale images
 
