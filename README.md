@@ -246,7 +246,7 @@ You may like to attemp one or more of the following challenges. Unlike tasks in 
 3. The file _'assets/normal-blood.png'_ is a microscope image of red blood cells. Using various techniques you have learned, write a Matlab .m script to count the number of red blood cells.
 
 ---
-## DRAW Week Assessments
+## DRAW Week Assessment
 ---
 
 The first half of this module is assessed by sending me the URL of your repo or "logbook" which should record what you have done in Lab 1 to Lab 4.  This account for 15% of the module.  The preferred route is through GitHub, but you may use other tools such as Notion or Obsidian.  You must complex the [SURVEY](https://forms.office.com/e/GLD0qYyxpS) and grant me access to them.  My Git account name is 'pykc'.
