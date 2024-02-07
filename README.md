@@ -114,10 +114,64 @@ Now, use the boundary operation to computer the boundaries of the blobs. That is
 
 How can you improve on this result?
 
+## Task 4 - Function bwmorph - thinning and thickening
 
-## Task 4 - Function bwmorph - thinning, top-hat?
+Matlab Image Processing Tool box includes a general morphological function _bwmorph_ which implements a variety of morphological operations based on combinations of dilations and erosions.  The calling syntax is:
+
+```
+g = bwmorph(f, operations, n)
+```
+where f is the input binary image, operation is a string specifying the desired operation, and n is a positive integer specifying the number of times the operation should be repeated. (n = 1 if omitted.)
+
+The morphological operations supported by _bwmorph_ are:
+
+<p align="center"> <img src="assets/bwmorph.jpg" /> </p>
+
+To test function _bwmorph_ on thinning operation, do the following:
+
+1. Read the image file 'fingerprint.tif' into f.
+2. Turn this into a good binary image using method from the previous task. 
+3. Perform thinning operation, 1, 2, 3, 4 and 5 times, storing results in g1, g2 ... etc.
+4. Montage the unthinned and thinned images to compare.
+
+What will happen if you keep thinning the image?  Try thinning with n = inf.  (inf is reserved word in Matlab which means infinity.  However, for _bwmorph_, it means repeat the function until the image stop changing.)
+
+Modify your matlab code so that the fingerprint is displayed black on white background instead of white on black.  What conclusion can you draw about the relationship between thinning and thickening?
 
 ## Task 5 - Connected Components and labels
+
+In processing and interpreting an image, it is often required to find objects in an image.  After binarization, these objects will form regions of 1's or 0's. These are called connected components within the image.  
+
+Below is a text image containing many characters.  The goal is to find the largest connected component in this image, and then erase it.
+
+<p align="center"> <img src="assets/text.png" /> </p>
+
+This sounds like a very complex task. Fortunately Matlab provides in their Toolbox the function _bwconncomp_ which perform the morphological operation described in Lecture 6 slides 22 - 24. Try the following Matlab script:
+
+```
+t = imread('assets/text.png');
+imshow(t)
+CC = bwconncomp(t)
+```
+
+CC is a structure returned by _bwconncomp_ as described below.
+
+<p align="center"> <img src="assets/cc.jpg" /> </p>
+
+To determine which is the largest component in the image and then erase it (i.e. set all pixels within that componenet to 0), do this:
+
+```
+numPixels = cellfun(@numel, CC.PixelIdxList);
+[biggest, idx] = max(numPixels);
+t(CC.PxelIdxList{idx}) = 0;
+figure
+imshow(t)
+```
+These few lines of code introduce you to some cool features of Matlab.
+
+1. *_cellfun_* applies a function to each cell in a cell array. In this case, the function _numel_ is applied to each member of the list **CC.PixelIdxList**.
+
+
 
 ## Task 6 - Morphological Reconstruction
 
