@@ -163,17 +163,86 @@ To determine which is the largest component in the image and then erase it (i.e.
 ```
 numPixels = cellfun(@numel, CC.PixelIdxList);
 [biggest, idx] = max(numPixels);
-t(CC.PxelIdxList{idx}) = 0;
+t(CC.PixelIdxList{idx}) = 0;
 figure
 imshow(t)
 ```
 These few lines of code introduce you to some cool features of Matlab.
 
-1. *_cellfun_* applies a function to each cell in a cell array. In this case, the function _numel_ is applied to each member of the list **CC.PixelIdxList**.
+1. *_cellfun_* applies a function to each cell in a cell array. In this case, the function _numel_ is applied to each member of the list **CC.PixelIdxList**.  The kth member of this list is a list of _(x,y)_ indices to the pixels within this component.
 
+2. The function *_numel_* returns the number of elements in an array.  In this case, it returns the number of pixels in each of the connected components.
+
+3. After the first statement, numPixels is an array containing the number of pixels in each of the found connected components. This corresponds to the table in Lecture 6 slide 24.
+
+4. The *_max_* function returns the maximum value in numPixels and its index in the array.
+
+5. Once this index is found, we have identified which connect component is the largest.  Using this index information, we can retrieve the list of pixel coordinates for this component in **CC.PixelIdxList**.
 
 
 ## Task 6 - Morphological Reconstruction
 
+In morphological opening, erosion typlically removes small objects, and subsequent dilation tends to restore the shape of the objects that remains.  However, the accuracy of this restoration relies on the similarly between the shapes to be restored and the structuring element.
+
+Morphological reconstruction (MR) is a better method that restores the original shapes of the objects that remain after erosion.  
+
+The following exercise repeat what was in Lecture 7 slide 10.  A binary image of printed text is processed so that the letters that are long and thin are kept, while all others are removed.  This is achieved through morphological reconstruction.
+
+MR requires three things: an input image to be processed called the mask f, a marker image g, and a structuring element se.  The steps are:
+
+1. Find the marker image g by eroding the mask with an se that mark the places where the desirable features are located. In our case, the wanted characters are all with long vertical elements that are 17 pixels tall.  Therefore the se used for erosion is a 17x1 of 1's.
+
+2. Apply the reconstruction operation using Matlab's *_imreconstruct_* functino between the marker g and the mask f. 
+
+The step
+```
+clear all
+close all
+f = imread('assets/text_bw.tif');
+se = ones(17,1);
+g = imerode(f, se);
+fo = imopen(f, se);     % use open to compare
+fr = imreconstruct(g, f);
+montage({f, g, fo, fr}, "size", [2 2])
+```
+
+Comment on what you observe from these four images.
+
+Also try the function *_imfill_*, which will fill the holes in an image (Lecture 6 slides 19-21).
+
+```
+ff = imfill(f);
+figure
+montage({f, ff})
+```
+
 ## Task 7 - Morphological Operations on Grayscale images
+
+So far, we have only been using binary images because they vividly show the effect of morphological operations, turning black pixels to white pixels insted of just change the shades of gray.
+
+In this task, we will explore the effect of erosion and dilation on grayscale images. 
+
+Try the follow:
+
+```
+clear all; close all;
+f = imread('assets/headCT.tif');
+se = strel('square',3);
+gd = imdilate(f, se);
+ge = imerode(f, se);
+gg = gd - ge;
+montage({f, gd, ge, gg}, 'size', [2 2])
+```
+Comments on the results.
+
+## Challenges
+
+You may like to attemp one or more of the following challenges. Unlike tasks in this Lab where you were guided with clear instructions, you are required to find your solutions yourself based on what you have learned so far.  
+
+1. The grayscale image file 'assets/fillings.tif' is a dental X-ray corrupted by noise.  Find how many fills this patient has and their sizes in number of pixles.
+
+2. 
+---
+DRAW Week Assessments
+---
 
