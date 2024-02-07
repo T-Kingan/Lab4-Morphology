@@ -251,4 +251,4 @@ You may like to attemp one or more of the following challenges. Unlike tasks in 
 
 The first half of this module is assessed by sending me the URL of your repo or "logbook" which should record what you have done in Lab 1 to Lab 4.  This account for 15% of the module.  The preferred route is through GitHub, but you may use other tools such as Notion or Obsidian.  You must complex the [SURVEY](https://forms.office.com/e/GLD0qYyxpS) and grant me access to them.  My Git account name is 'pykc'.
 
-The deadline for this is 16.00 on Friday 16 February.  I would like you NOT to update your repo or logbook until the following Monday, so that I have a chance to do marking on them.
+The deadline for this is **16.00 on Friday 16 February**.  I would like you NOT to update your repo or logbook until the following Monday, so that I have a chance to mark your work.
