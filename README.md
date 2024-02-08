@@ -69,7 +69,7 @@ SE20 = strel('disk',20);
 E2 = imerode(A,SE2);
 E10 = imerode(A,SE10);
 E20 = imerode(A,SE20);
-montage({A, E2, E10, E20, "size", [2 2]})
+montage({A, E2, E10, E20}, "size", [2 2])
 ```
 Comment on the results.
 
